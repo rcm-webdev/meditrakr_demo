@@ -1,18 +1,16 @@
-import { useEffect, useState } from 'react';
-import { Button } from './components/ui/button';
+import { BrowserRouter as Router, Routes, Route } from 'react-router';
+import HomePage from './pages/Home';
 
 function App() {
-   const [message, setMessage] = useState('');
-   useEffect(() => {
-      fetch('/api/hello')
-         .then((res) => res.json())
-         .then((data) => setMessage(data.message));
-   }, []);
    return (
-      <div className="p-4 bg-stone-400">
-         <p className="text-s tone-50 text-3xl">{message}</p>
-         <Button variant={'secondary'}>Click Here!</Button>
-      </div>
+      <Router>
+         <Routes>
+            <Route path="/" element={<HomePage />} />
+            {/* Add other routes here */}
+            <Route path="/dashboard" element={<div>Dashboard Page</div>} />
+            <Route path="/playground" element={<div>Playground Page</div>} />
+         </Routes>
+      </Router>
    );
 }
 
